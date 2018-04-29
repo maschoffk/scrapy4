@@ -13,9 +13,10 @@ class BlogSpider(scrapy.Spider):
         soup = response.xpath("//*[@class='product-info-wrapper']")
         for prod in soup:
             item = AdidasItem()
-            item['name'] = prod.xpath('a/@title').extract()
-            item['id'] = prod.xpath('a/@id').extract()
-
+            item['name'] = prod.xpath('a/@title').extract_first()
+            item['id'] = prod.xpath('a/@id').extract_first()
+            item['price'] = prod.xpath('div[@class="price-box"]/p/span/@pricerounded').extract_first()
+            item['discounted_price'] = prod.xpath('div[@class="price-box"]/p[@class="special-price"]/span/@pricerounded').extract_first()
             yield item
             
         nextPageLinkSelect = response.xpath('//div[@class="prevnextbuttons"]/a[2]/@href')
