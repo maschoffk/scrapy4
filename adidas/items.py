@@ -7,10 +7,12 @@
 
 import scrapy
 
-
 class AdidasItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     name = scrapy.Field()
     id = scrapy.Field()
+    price = scrapy.Field()
+    discounted_price = scrapy.Field()
+
     pass

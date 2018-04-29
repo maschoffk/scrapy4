@@ -15,6 +15,7 @@ class BlogSpider(scrapy.Spider):
             item = AdidasItem()
             item['name'] = prod.xpath('a/@title').extract()
             item['id'] = prod.xpath('a/@id').extract()
+
             yield item
             
         nextPageLinkSelect = response.xpath('//div[@class="prevnextbuttons"]/a[2]/@href')
